@@ -2,7 +2,6 @@ import React from 'react';
 import {
   View, StyleSheet, Alert,
 } from 'react-native';
-import firebase from 'firebase';
 
 import InSubmitFormPart from './InSubmitFormPart';
 import Button from './Button';

@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 
 import AppBar from '../components/AppBar';
+import Button from '../components/Button';
 
 export default function SignUpScreen() {
   const [email, setEmail] = useState('');
@@ -35,6 +36,7 @@ export default function SignUpScreen() {
           setPassword(text);
         }}
       />
+      <Button style={{ marginLeft: 19 }} label="LogIn" />
       <View style={styles.footerContainer}>
         <Text style={styles.footerText}>If you have not SignUp, </Text>
         <TouchableOpacity>

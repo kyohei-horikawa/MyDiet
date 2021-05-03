@@ -2,9 +2,9 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import firebase from 'firebase';
 
-import AppBar from './src/components/AppBar';
-import InSubmitForm from './src/components/InSubmitForm';
-import InEditScreen from './src/screens/InEditScreen';
+// import AppBar from './src/components/AppBar';
+// import InSubmitForm from './src/components/InSubmitForm';
+// import InEditScreen from './src/screens/InEditScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
 import { firebaseConfig } from './env';
 
