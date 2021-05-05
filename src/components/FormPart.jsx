@@ -1,50 +1,49 @@
 import React, { useState } from 'react';
 import {
-  View, StyleSheet, TextInput, Text,
+  View, StyleSheet,
 } from 'react-native';
-import { string } from 'prop-types';
+import { TextInput } from 'react-native-paper';
+import { string, shape } from 'prop-types';
 
-export default function InSubmitFormPart(props) {
-  const { name, type } = props;
+export default function FormPart(props) {
+  const { name, type, style } = props;
   const [val, setVal] = useState('');
   return (
     <View style={styles.container}>
-      <Text style={styles.Text}>{name}</Text>
       <TextInput
+        label={name}
         value={val}
         onChangeText={(text) => {
           setVal(text);
         }}
-        style={styles.input}
+        style={[styles.input, style]}
         placeholder={name}
         keyboardType={type}
+        autoCapitalize="none"
       />
     </View>
   );
 }
 
-InSubmitFormPart.propTypes = {
+FormPart.propTypes = {
   name: string.isRequired,
-  type: string.isRequired,
+  type: string,
+  style: shape(),
+};
+
+FormPart.defaultProps = {
+  type: 'default',
+  style: null,
 };
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    alignItems: 'center',
-    padding: 10,
     margin: 10,
-    alignSelf: 'center',
-  },
-  Text: {
-    marginRight: 10,
-    width: 100,
   },
   input: {
-    paddingVertical: 8,
+    width: '100%',
     borderWidth: 1,
-    alignSelf: 'flex-start',
     paddingHorizontal: 30,
-    width: 100,
   },
 });

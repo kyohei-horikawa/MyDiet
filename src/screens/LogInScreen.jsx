@@ -4,15 +4,18 @@ import {
   View, StyleSheet, Text, TextInput,
 } from 'react-native';
 
-import AppBar from '../components/AppBar';
 import Button from '../components/Button';
 
-export default function SignUpScreen() {
+export default function SignUpScreen(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { navigation } = props;
+
+  function handlePress() {
+    navigation.navigate('SignUp');
+  }
   return (
     <View style={styles.container}>
-      <AppBar />
       <Text style={styles.text}>Log In!</Text>
       <TextInput
         style={styles.input}
@@ -39,7 +42,7 @@ export default function SignUpScreen() {
       <Button style={{ marginLeft: 19 }} label="LogIn" />
       <View style={styles.footerContainer}>
         <Text style={styles.footerText}>If you have not SignUp, </Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handlePress}>
           <Text style={styles.footerLink}>SignUp here</Text>
         </TouchableOpacity>
       </View>

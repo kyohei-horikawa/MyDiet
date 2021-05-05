@@ -3,7 +3,7 @@ import {
   View, StyleSheet, Alert,
 } from 'react-native';
 
-import InSubmitFormPart from './InSubmitFormPart';
+import FormPart from './FormPart';
 import Button from './Button';
 
 export default function InSubmitForm() {
@@ -12,12 +12,12 @@ export default function InSubmitForm() {
   }
   return (
     <View style={styles.container}>
-      <InSubmitFormPart name="name" type="default" />
-      <InSubmitFormPart name="cal" type="numeric" />
-      <InSubmitFormPart name="protain" type="numeric" />
-      <InSubmitFormPart name="fat" type="numeric" />
-      <InSubmitFormPart name="carbo" type="numeric" />
-      <InSubmitFormPart name="vitaminC" type="numeric" />
+      <FormPart name="name" type="default" />
+      <FormPart name="cal" type="numeric" />
+      <FormPart name="protain" type="numeric" />
+      <FormPart name="fat" type="numeric" />
+      <FormPart name="carbo" type="numeric" />
+      <FormPart name="vitaminC" type="numeric" />
       <Button label="OK" style={{ alignSelf: 'center' }} onPress={onPress} />
     </View>
   );

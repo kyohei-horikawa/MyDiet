@@ -3,16 +3,24 @@ import {
   TouchableOpacity,
   View, StyleSheet, Text, TextInput,
 } from 'react-native';
+import firebase from 'firebase';
 
-import AppBar from '../components/AppBar';
 import Button from '../components/Button';
 
-export default function SignUpScreen() {
+export default function SignUpScreen(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const { navigation } = props;
+
+  function handlePress() {
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then(() => {
+        navigation.navigate('NewProfile');
+      });
+  }
   return (
     <View style={styles.container}>
-      <AppBar />
       <Text style={styles.text}>Sign Up!</Text>
       <TextInput
         style={styles.input}
@@ -36,10 +44,13 @@ export default function SignUpScreen() {
           setPassword(text);
         }}
       />
-      <Button style={{ marginLeft: 19 }} label="SignUp" />
+      <Button style={{ marginLeft: 19 }} label="SignUp" onPress={handlePress} />
       <View style={styles.footerContainer}>
         <Text style={styles.footerText}>If you already SignUp, </Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => {
+          navigation.navigate('LogIn');
+        }}
+        >
           <Text style={styles.footerLink}>LogIn here</Text>
         </TouchableOpacity>
       </View>
