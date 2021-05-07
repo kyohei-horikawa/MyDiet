@@ -2,12 +2,18 @@ import React from 'react';
 import {
   View, StyleSheet, Alert,
 } from 'react-native';
+import firebase from 'firebase';
 
 import FormPart from './FormPart';
 import Button from './Button';
 
 export default function InSubmitForm() {
   function onPress() {
+    const { currentUser } = firebase.auth();
+    if (currentUser) {
+      const db = firebase.firestore();
+      const ref = db.collection(`users/${currentUser}/`);
+    }
     Alert.alert('ok');
   }
   return (

@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   View, StyleSheet,
 } from 'react-native';
 import { TextInput } from 'react-native-paper';
-import { string, shape } from 'prop-types';
+import { string, shape, func } from 'prop-types';
 
 export default function FormPart(props) {
-  const { name, type, style } = props;
-  const [val, setVal] = useState('');
+  const {
+    name, type, style, val, setVal,
+  } = props;
   return (
     <View style={styles.container}>
       <TextInput
@@ -29,6 +30,8 @@ FormPart.propTypes = {
   name: string.isRequired,
   type: string,
   style: shape(),
+  val: string.isRequired,
+  setVal: func.isRequired,
 };
 
 FormPart.defaultProps = {

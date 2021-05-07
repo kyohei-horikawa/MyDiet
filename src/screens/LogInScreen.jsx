@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   TouchableOpacity,
-  View, StyleSheet, Text, TextInput,
+  View, StyleSheet, Text, TextInput, Alert,
 } from 'react-native';
+import firebase from 'firebase';
 
 import Button from '../components/Button';
 
@@ -11,8 +12,30 @@ export default function SignUpScreen(props) {
   const [password, setPassword] = useState('');
   const { navigation } = props;
 
+  useEffect(() => {
+    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'Home' }],
+        });
+      }
+    });
+
+    return unsubscribe;
+  }, []);
+
   function handlePress() {
-    navigation.navigate('SignUp');
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then(() => {
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'Home' }],
+        });
+      })
+      .catch((error) => {
+        Alert.alert(error);
+      });
   }
   return (
     <View style={styles.container}>
@@ -39,10 +62,13 @@ export default function SignUpScreen(props) {
           setPassword(text);
         }}
       />
-      <Button style={{ marginLeft: 19 }} label="LogIn" />
+      <Button style={{ marginLeft: 19 }} label="LogIn" onPress={handlePress} />
       <View style={styles.footerContainer}>
         <Text style={styles.footerText}>If you have not SignUp, </Text>
-        <TouchableOpacity onPress={handlePress}>
+        <TouchableOpacity onPress={() => {
+          navigation.navigate('SignUp');
+        }}
+        >
           <Text style={styles.footerLink}>SignUp here</Text>
         </TouchableOpacity>
       </View>
